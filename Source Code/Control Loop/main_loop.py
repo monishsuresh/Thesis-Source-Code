@@ -17,7 +17,8 @@ digital_control = True
 
 total_time = 0
 start_time = time.perf_counter()
-while total_time < 1:
+power_on = False
+while total_time < 3:
     total_time = time.perf_counter() - start_time
     vo, vs = ad2_module.read_buffer(dwf, hdwf)
     
@@ -36,9 +37,6 @@ while total_time < 1:
     vo_plot.append(vo)
     vs_plot.append(vs)
     dc_plot.append(dc)
-    
-    if total_time > 3:  # 10
-            break
         
 ad2_module.ad2_close(dwf, hdwf)
 
