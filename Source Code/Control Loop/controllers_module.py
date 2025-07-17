@@ -31,8 +31,9 @@ integral_active = False
 t_old = 0
 vo_old = 0
 integral = 0
+Ki = 0
 def gpr_pi(target_v, vo, vs, t):
-    global integral_active, t_old, vo_old, integral
+    global integral_active, t_old, vo_old, integral, Ki
     
     # calculate rate of change of load voltage
     t_new = t
@@ -55,6 +56,7 @@ def gpr_pi(target_v, vo, vs, t):
         Ki = 250
     elif abs(dvdt) > 80: 
         Ki = 0
+        integral = 0
     prop = 3 * vo_c
     integral = integral + (Ki * vo_c * dt)
     
